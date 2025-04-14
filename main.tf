@@ -7,11 +7,14 @@ terraform {
   }
 
   required_version = ">= 1.2.0"
+
 }
 
 
 provider "aws" {
   region  = "ap-south-1"
+  access_key = "AKIAQ3EGUYXSMD2KA4US"
+  secret_key = "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"
 }
 
 resource "aws_instance" "app_server" {
