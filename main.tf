@@ -25,9 +25,6 @@ locals {
   generated_hostname = "${random_string.hostname_prefix.result}${random_integer.hostname_suffix.result}"
 }
 
-
-
-
 provider "aws" {
   region  = "ap-south-1"
   access_key = ""
@@ -37,9 +34,14 @@ provider "aws" {
 resource "aws_instance" "web" {
   ami           = "ami-002f6e91abff6eb96"
   instance_type = "t2.micro"
+  user_data = <<-EOF
+              #!/bin/bash
+              hostnamectl set-hostname ${local.generated_hostname}
+              echo "127.0.0.1 ${local.generated_hostname}" >> /etc/hosts
+              EOF
 
   tags = {
-     Name = "Test-Server"
+     Name = "${local.generated_hostname}"
   
   }
 }
