@@ -11,7 +11,7 @@ terraform {
 
 resource "random_string" "hostname_prefix" {
   length  = 3
-  upper   = true
+  upper   = false
   special = false
   number  = false
 }
