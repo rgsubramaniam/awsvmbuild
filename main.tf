@@ -9,6 +9,24 @@ terraform {
 
 }
 
+resource "random_string" "hostname_prefix" {
+  length  = 3
+  upper   = true
+  special = false
+  number  = false
+}
+
+resource "random_integer" "hostname_suffix" {
+  min = 100000
+  max = 999999
+}
+
+locals {
+  generated_hostname = "${random_string.hostname_prefix.result}${random_integer.hostname_suffix.result}"
+}
+
+
+
 
 provider "aws" {
   region  = "ap-south-1"
