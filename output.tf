@@ -9,3 +9,7 @@ output "instance_private_ip" {
 output "instance_hostname" {
   value = aws_instance.web.private_dns
 }
+
+output "custom_hostname" {
+  value = local.generated_hostname
+}
