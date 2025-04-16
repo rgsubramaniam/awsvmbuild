@@ -16,7 +16,7 @@ provider "aws" {
   secret_key = ""
 }
 
-resource "aws_instance" "app_server" {
+resource "aws_instance" "web" {
   ami           = "ami-002f6e91abff6eb96"
   instance_type = "t2.micro"
 
